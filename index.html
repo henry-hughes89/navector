@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#090d25"><title>NAVECTOR v6 · Misión de navegación vectorial</title><style>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#090d25"><title>NAVECTOR v8 · Misión de navegación vectorial</title><style>
 :root{--bg:#080c20;--panel:#14223e;--panel2:#172c47;--board:#10293f;--edge:#375473;--white:#f2f7ff;--muted:#acc5df;--cyan:#55e0f5;--mint:#23eab6;--pink:#ff5c98;--amber:#ffd068;--blue:#5b87fc;--danger:#ff506c;--safe:#38e6b2;--shadow:0 20px 70px #02061478;--radius:18px}
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{background:var(--bg);color:var(--white);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:14px;line-height:1.4}button,input,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.38;cursor:not-allowed}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}h1,h2,h3,p{margin:0}.hidden{display:none!important}.shell{width:100vw;height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden;position:relative;background:radial-gradient(ellipse at 6% 0%,#1e1b4e 0%,transparent 30%),radial-gradient(ellipse at 98% 75%,#0b3c51 0%,transparent 31%),#080c20}.shell:before{position:absolute;inset:0;pointer-events:none;content:"";background-image:radial-gradient(#bbd0ff 0.85px,transparent 1px),radial-gradient(#76a4f2 0.8px,transparent 1px);background-size:107px 97px,173px 169px;background-position:16px 11px,47px 85px;opacity:.23}
 .topbar{position:relative;z-index:5;flex:0 0 61px;min-height:0;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#0a132ccc;border-bottom:1px solid #374b72;padding:0 clamp(12px,1.6vw,28px);box-shadow:0 3px 25px #0307144d}.logo{flex:0 0 auto;background:none;border:0;color:#f6faff;padding:0;font-size:clamp(20px,1.7vw,25px);letter-spacing:.025em;font-weight:950;white-space:nowrap;display:flex;align-items:center;gap:0}.logo>span:not(.logo-mark){color:var(--cyan)}.logo-mark{font-size:24px;color:var(--amber);margin-right:7px;filter:drop-shadow(0 0 9px #ffc95b88)}.logo small{font-size:9px;letter-spacing:.13em;color:#9fcaf9;margin-left:11px;border:1px solid #365c7f;border-radius:5px;padding:4px 6px}.topnav{display:flex;align-items:center;justify-content:center;gap:5px;margin-left:auto}.topnav button{padding:9px 14px;color:#b7cce4;background:transparent;border:1px solid transparent;border-radius:9px;white-space:nowrap;font-weight:720}.topnav button:hover,.topnav button.active{color:#f4fbff;background:#233c65;border-color:#3e6986}.iconbutton{border-radius:50%;border:1px solid #6ab8cd;color:#b8fbff;background:#193f56;font-size:17px;width:35px;height:35px;display:grid;place-items:center;font-weight:950;flex:0 0 auto}.main{position:relative;z-index:1;flex:1;min-height:0;padding:clamp(8px,1.15vw,17px);overflow:hidden}.screen{height:100%;min-height:0;width:100%;overflow:hidden}.panel{background:linear-gradient(150deg,#182946ed,#101d37f5);border:1px solid #3b5477;border-radius:var(--radius);box-shadow:var(--shadow);min-width:0}.kicker{font-size:clamp(9px,.8vw,12px);font-weight:900;color:#6bdef0;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap}.signal{width:8px;height:8px;background:var(--mint);display:inline-block;border-radius:50%;box-shadow:0 0 10px #23eab699;margin-right:5px;animation:signalPulse 2.2s ease-in-out infinite}.btn{border:1px solid #6c92b7;background:#264364;color:#f8faff;border-radius:11px;padding:10px 15px;font-weight:850;white-space:nowrap;transition:transform .13s,background .16s,box-shadow .16s}.btn:hover:not(:disabled){transform:translateY(-1px);background:#345780}.btn-primary{background:linear-gradient(135deg,#56eaff,#26baca);color:#082338;border-color:#88ecf9;box-shadow:0 6px 23px #20cade30}.btn-primary:hover:not(:disabled){background:linear-gradient(135deg,#b1f9ff,#46d8e9);box-shadow:0 8px 30px #26d8ee47}.btn-outline{background:#1f3254;border-color:#486c91}.btn-link{border:none;background:transparent;color:#a8c7e3}.btn-icon-subtle{padding:8px 11px;background:#142944;border-color:#385372}.chip{display:inline-flex;align-items:center;justify-content:center;padding:6px 10px;border:1px solid #4c759b;border-radius:99px;background:#1c3656;color:#c4e5fc;font-size:11px;font-weight:850;white-space:nowrap}.chip-green{border-color:#238d75;background:#0f4a42;color:#60f6cc}
@@ -152,6 +152,99 @@
  .win-overlay:has(.win-share:not(.hidden)) .win-card .btn-link{font-size:10px;padding:2px}
 }
 
+/* NAVECTOR v7: mando por incrementos, exclusivo para dispositivos táctiles. */
+.component-control{display:flex;align-items:center;justify-content:center;min-width:0}
+.component-control input{flex:1;min-width:0}
+.vector-step{display:none;border:1px solid #5b9dc2;border-radius:9px;background:#284b6f;color:#f3fbff;font-weight:950;font-size:21px;line-height:1;touch-action:manipulation;user-select:none;-webkit-tap-highlight-color:transparent;transition:background .1s,transform .1s}
+.vector-step:active:not(:disabled){background:#39bfd1;transform:scale(.96)}
+.vector-step:disabled{opacity:.29}
+html.touch-controls .component-control{flex-direction:column;gap:2px}
+html.touch-controls .component-control input{pointer-events:none;cursor:default;padding:0;height:33px;flex:0 0 33px;max-width:58px;width:100%;font-variant-numeric:tabular-nums}
+html.touch-controls .vector-step{display:grid;place-items:center;height:34px;min-width:44px;width:100%;max-width:58px;flex:0 0 34px}
+html.touch-controls .pair-input{align-items:center;gap:4px}
+html.touch-controls .comma{align-self:center;padding-bottom:0}
+html.touch-controls .paren{align-self:center}
+html[data-theme="daylight"] .vector-step{background:#e2f1fc;color:#214c70;border-color:#7caccd}
+html[data-theme="daylight"] .vector-step:active:not(:disabled){background:#a9d9fa}
+html[data-theme="mono"] .vector-step{background:#424242;color:white;border-color:#b9b9b9}
+html[data-theme="solar"] .vector-step{background:#833d69;color:#ffefc9;border-color:#dd9d9e}
+@media (max-width:620px) and (orientation:portrait){
+ html.touch-controls .game-layout{grid-template-rows:minmax(0,1fr) clamp(190px,24dvh,205px)}
+ html.touch-controls .cockpit{grid-template-rows:minmax(0,1fr);gap:4px}
+ html.touch-controls .cockpit-title{display:none}
+ html.touch-controls .vector-console{padding:5px 6px;gap:3px;justify-content:center}
+ html.touch-controls .console-label{text-align:center;font-size:9px;letter-spacing:.04em}
+ html.touch-controls .pair-input{gap:1px;min-height:106px}
+ html.touch-controls .component-control{width:46px;gap:2px}
+ html.touch-controls .component-control input{width:44px;max-width:44px;height:30px;flex-basis:30px;font-size:21px;border-radius:7px}
+ html.touch-controls .vector-step{width:44px;min-width:44px;height:35px;flex-basis:35px;border-radius:7px}
+ html.touch-controls .pair-input .paren{font-size:21px}
+ html.touch-controls .pair-input .comma{font-size:20px}
+ html.touch-controls .console-actions{gap:2px}
+ html.touch-controls .console-actions .btn{min-height:31px;padding:5px 7px}
+ html.touch-controls .limit-label{display:none}
+ html.touch-controls .gauge-box{padding:6px}
+ html.touch-controls .gauge-box svg{max-height:135px}
+}
+@media (max-height:520px) and (orientation:landscape){
+ html.touch-controls .component-control{gap:1px}
+ html.touch-controls .vector-step{height:28px;flex-basis:28px}
+ html.touch-controls .component-control input{height:28px;flex-basis:28px}
+ html.touch-controls .pair-input{gap:4px}
+ html.touch-controls .vector-console{gap:3px;padding:6px}
+ html.touch-controls .cockpit-title{display:none}
+ html.touch-controls .console-actions .btn{padding:6px}
+}
+
+/* NAVECTOR v8 — feedback matemático, señales redundantes, modo móvil y celebración */
+.failure-trace{pointer-events:none;filter:drop-shadow(0 0 4px currentColor)}
+.failure-point-halo{transform-box:fill-box;transform-origin:center;animation:v8Impact .45s ease-in-out infinite alternate}
+@keyframes v8Impact{to{opacity:.35;transform:scale(1.32)}}
+.arrival-effect{pointer-events:none;animation:v8Arrival .8s ease-out both;filter:drop-shadow(0 0 14px var(--sv-23e9b1))}
+@keyframes v8Arrival{0%{opacity:.08;transform:scale(.18)}40%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.75)}}
+.win-overlay .result-metrics{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;width:100%}
+.win-overlay .result-metrics>div{min-width:0;padding:9px 6px}
+.win-overlay .result-metrics strong{font-size:clamp(22px,3vw,40px)}
+.win-overlay .result-metrics small{font-size:clamp(8px,.9vw,11px);letter-spacing:.04em;white-space:normal}
+.win-achievement{font-size:clamp(11px,1.2vw,15px);letter-spacing:.12em;font-weight:950;color:var(--sv-75ffe5);text-align:center;min-height:16px}
+.win-overlay.optimal-win .win-card{border-color:var(--sv-ffd375);box-shadow:0 0 90px #eabf4390,0 0 0 2px #fcdb9b77 inset}
+.win-overlay.optimal-win .win-achievement{color:var(--sv-ffd375);text-shadow:0 0 16px #ffc75b}
+.win-overlay.optimal-win .win-icon{color:var(--sv-ffd375);animation:v8Star .7s ease-in-out infinite alternate}
+@keyframes v8Star{to{transform:scale(1.35) rotate(15deg);filter:drop-shadow(0 0 16px #ffd064)}}
+.win-actions{display:grid;grid-template-columns:minmax(0,1.48fr) minmax(0,.8fr);width:100%;align-items:stretch;gap:8px}
+.win-actions .btn{min-width:0}
+.enter-shortcut{opacity:.8;font-size:10px;white-space:nowrap;border:1px solid currentColor;border-radius:5px;padding:2px 5px;margin-left:6px}
+.win-card .btn-link{font-weight:750}
+/* Fondo y señalizaciones se diseñan para funcionar incluso en grises: rayas, remolinos, hexágono y círculos */
+html[data-theme="mono"] .failure-trace path:nth-of-type(2){stroke-dasharray:6 5}
+@media(max-width:620px) and (orientation:portrait){
+ html.touch-controls .game-layout{grid-template-rows:minmax(0, min(430px,55dvh)) clamp(200px,25dvh,222px);align-content:center;gap:9px}
+ html.touch-controls .game-layout>.playfield{min-height:0}
+ html.touch-controls .game-layout .space-board{flex:1 1 auto;min-height:0}
+ html.touch-controls #gameBoard{width:100%;height:100%;object-fit:contain}
+ html.touch-controls .playhead{flex-basis:35px}
+ html.touch-controls .cockpit{min-height:0}
+ html.touch-controls .vector-console{padding:8px 8px}
+ html.touch-controls .component-control{width:clamp(45px,12vw,54px)}
+ html.touch-controls .component-control input,html.touch-controls .vector-step{width:100%;max-width:none}
+ html.touch-controls .pair-input{min-height:112px}
+ html.touch-controls .vector-step{height:38px;flex-basis:38px}
+ html.touch-controls .gauge-box svg{max-height:149px}
+}
+@media(max-width:620px) and (orientation:portrait) and (max-height:700px){
+ html.touch-controls .game-layout{grid-template-rows:minmax(0,52dvh) minmax(0,200px);gap:5px}
+ html.touch-controls .pair-input{min-height:102px}
+ html.touch-controls .vector-step{height:32px;flex-basis:32px}
+}
+@media(max-height:520px) and (orientation:landscape){
+ .win-overlay .result-metrics>div{padding:4px}
+ .win-overlay .result-metrics strong{font-size:20px}
+ .win-achievement{font-size:10px;min-height:12px}
+ .enter-shortcut{font-size:9px;padding:1px 3px}
+}
+@media(prefers-reduced-motion:reduce){.failure-point-halo,.arrival-effect,.win-overlay.optimal-win .win-icon{animation:none!important}}
+
+</style><style>
 /* NAVECTOR v6 · Paletas: variables de los SVG, colores originales intactos por defecto */
 :root{--sv-04d5a6:#04d5a6;--sv-05223d:#05223d;--sv-07172b:#07172b;--sv-08dbb2:#08dbb2;--sv-090d25:#090d25;--sv-0a162a:#0a162a;--sv-0c3540:#0c3540;--sv-12bba7:#12bba7;--sv-12eac9:#12eac9;--sv-163c74:#163c74;--sv-164758:#164758;--sv-1fa4b9:#1fa4b9;--sv-204d86:#204d86;--sv-20e9ac:#20e9ac;--sv-23e9b1:#23e9b1;--sv-242424:#242424;--sv-28405c:#28405c;--sv-30162c:#30162c;--sv-304a70:#304a70;--sv-30f5be:#30f5be;--sv-34ffc2:#34ffc2;--sv-367e8d:#367e8d;--sv-36c5eb:#36c5eb;--sv-37ffbc:#37ffbc;--sv-397bf9:#397bf9;--sv-39e0fc:#39e0fc;--sv-40ffc4:#40ffc4;--sv-43daff:#43daff;--sv-4675d8:#4675d8;--sv-46ffc9:#46ffc9;--sv-4e7798:#4e7798;--sv-5180e5:#5180e5;--sv-51a7b9:#51a7b9;--sv-51ffe0:#51ffe0;--sv-52efff:#52efff;--sv-5bbacf:#5bbacf;--sv-5d2cbd:#5d2cbd;--sv-5e9da9:#5e9da9;--sv-5f81a3:#5f81a3;--sv-60e7f7:#60e7f7;--sv-65f5fc:#65f5fc;--sv-65ffe8:#65ffe8;--sv-68451f:#68451f;--sv-6affdb:#6affdb;--sv-75ffe5:#75ffe5;--sv-764c26:#764c26;--sv-78edff:#78edff;--sv-8be4ff:#8be4ff;--sv-8cf5ff:#8cf5ff;--sv-8d2b66:#8d2b66;--sv-8db4d1:#8db4d1;--sv-8f285f:#8f285f;--sv-90dfe7:#90dfe7;--sv-99b5d5:#99b5d5;--sv-9c64f5:#9c64f5;--sv-9fe6ff:#9fe6ff;--sv-ac6dfb:#ac6dfb;--sv-b3eeff:#b3eeff;--sv-bafaff:#bafaff;--sv-bb87ff:#bb87ff;--sv-bd89ff:#bd89ff;--sv-c0e5eb:#c0e5eb;--sv-ccfff2:#ccfff2;--sv-d7ecff:#d7ecff;--sv-dcfaff:#dcfaff;--sv-e7faff:#e7faff;--sv-e8bbff:#e8bbff;--sv-e9f3fb:#e9f3fb;--sv-e9fbff:#e9fbff;--sv-eafaff:#eafaff;--sv-ecfdff:#ecfdff;--sv-ed6ac7:#ed6ac7;--sv-ef65bb:#ef65bb;--sv-effaff:#effaff;--sv-f5d4ff:#f5d4ff;--sv-f5f9ff:#f5f9ff;--sv-f7bc42:#f7bc42;--sv-f8edff:#f8edff;--sv-ff4d9a:#ff4d9a;--sv-ff4f99:#ff4f99;--sv-ff527d:#ff527d;--sv-ff568a:#ff568a;--sv-ff667c:#ff667c;--sv-ff668f:#ff668f;--sv-ff93bb:#ff93bb;--sv-ffb6d5:#ffb6d5;--sv-ffb968:#ffb968;--sv-ffbc64:#ffbc64;--sv-ffbf48:#ffbf48;--sv-ffcf69:#ffcf69;--sv-ffd065:#ffd065;--sv-ffd069:#ffd069;--sv-ffd071:#ffd071;--sv-ffd375:#ffd375;--sv-ffdb77:#ffdb77;--sv-ffdc8c:#ffdc8c;--sv-ffdd77:#ffdd77;--sv-ffdd7f:#ffdd7f;--sv-ffdd8e:#ffdd8e;--sv-ffe18b:#ffe18b;--sv-ffe1f0:#ffe1f0;--sv-fff0c3:#fff0c3;--sv-fff3c5:#fff3c5;--sv-ffffff:#ffffff;--void-ring:#9b58f5;--void-spark:#70ddff;--void-center:#09051e;}
 html[data-theme="daylight"]{--sv-04d5a6:#168c7a;--sv-05223d:#ffffff;--sv-07172b:#e2ecf4;--sv-08dbb2:#2aae91;--sv-0a162a:#c8d8e9;--sv-0c3540:#cde5e1;--sv-12bba7:#0b9d88;--sv-12eac9:#23ad90;--sv-164758:#f8fcff;--sv-1fa4b9:#9bd1ee;--sv-20e9ac:#1cb897;--sv-28405c:#bad0df;--sv-304a70:#93aec5;--sv-34ffc2:#0a9c7c;--sv-367e8d:#b3cbdb;--sv-37ffbc:#0b9c69;--sv-40ffc4:#128b64;--sv-43daff:#1c8cbd;--sv-4e7798:#acc4d8;--sv-5180e5:#326cc5;--sv-51a7b9:#7195b2;--sv-51ffe0:#26ac99;--sv-52efff:#118bd0;--sv-5bbacf:#b2cde3;--sv-5e9da9:#a8bcd0;--sv-5f81a3:#9cb1c5;--sv-60e7f7:#087db1;--sv-65ffe8:#168c7a;--sv-68451f:#75460f;--sv-6affdb:#187f73;--sv-78edff:#0074bd;--sv-8cf5ff:#337ab0;--sv-8d2b66:#951e56;--sv-8db4d1:#567b96;--sv-8f285f:#a31e51;--sv-90dfe7:#33678b;--sv-99b5d5:#5a7997;--sv-9c64f5:#8050b8;--sv-9fe6ff:#d8f3fc;--sv-ac6dfb:#8857c6;--sv-b3eeff:#8aaeca;--sv-bafaff:#124a72;--sv-bd89ff:#8f5bca;--sv-c0e5eb:#28445d;--sv-ccfff2:#157f6d;--sv-d7ecff:#203f58;--sv-dcfaff:#1b4562;--sv-e8bbff:#6b48a4;--sv-eafaff:#316790;--sv-effaff:#214469;--sv-f5d4ff:#ede4ff;--sv-f5f9ff:#193e60;--sv-f7bc42:#d39a21;--sv-ff4d9a:#bf2454;--sv-ff4f99:#e26b9a;--sv-ff568a:#d03567;--sv-ff668f:#d43e72;--sv-ff93bb:#eb729d;--sv-ffb6d5:#ed8cad;--sv-ffbf48:#db971d;--sv-ffcf69:#b98624;--sv-ffe1f0:#ffd3e1;--void-ring:#7e4baa;--void-spark:#a87fdf;--void-center:#23133c;}
@@ -399,19 +492,25 @@ html[data-theme="mono"] .shell{filter:grayscale(1)}
         <div class="space-board" id="spaceBoard"><svg id="gameBoard" viewBox="0 0 850 590" role="img" aria-label="Mapa de la misión con una nave, obstáculos y un portal"></svg>
           <div id="coreStatus" class="core-status hidden" aria-live="polite"><span>⬡</span><strong id="coreStatusText">NÚCLEO PENDIENTE</strong></div><div class="board-hud"><span class="hud-dot"></span><span id="hudMessage">SISTEMAS LISTOS</span></div>
           <div class="impact-overlay" id="impactOverlay" aria-live="polite"><div class="impact-banner"><span class="failure-symbol">✸</span><strong id="impactText">COLISIÓN</strong><small id="impactDetail">La nave chocó</small></div></div>
-          <div class="win-overlay hidden" id="winOverlay"><div class="win-card"><div class="win-fireworks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="win-icon">✦</div><div class="kicker">MISIÓN COMPLETADA</div><h2 id="winTitle">¡Portal alcanzado!</h2><div class="result-metrics"><div><strong id="winYour">0</strong><small>TUS VECTORES</small></div><div><strong id="winMinimum">0</strong><small>MÍNIMO POSIBLE</small></div></div><p id="winNote"></p>
+          <div class="win-overlay hidden" id="winOverlay"><div class="win-card"><div class="win-fireworks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="win-icon">✦</div><div class="kicker">MISIÓN COMPLETADA</div><h2 id="winTitle">¡Portal alcanzado!</h2><div class="result-metrics"><div><strong id="winYour">0</strong><small>UTILIZADOS</small></div><div><strong id="winMinimum">0</strong><small>ÓPTIMO</small></div><div><strong id="winBest">—</strong><small>MEJOR PERSONAL</small></div></div><div id="winAchievement" class="win-achievement" aria-live="polite"></div><p id="winNote"></p>
           <div class="win-share hidden" id="winShare">
             <div class="share-heading"><span>✦</span><div><strong>¡Misión validada!</strong><small>Compártela con otro piloto</small></div></div>
             <div class="share-actions"><button id="shareCopy" class="btn btn-primary" type="button">⧉ Copiar código</button><button id="shareDownload" class="btn btn-outline" type="button">↓ Descargar JSON</button></div>
             <small class="share-status" id="shareStatus" role="status"></small>
             <textarea class="share-manual hidden" id="shareManual" readonly aria-label="Código de nivel para copiar manualmente"></textarea>
           </div>
-          <div class="win-actions"><button class="btn btn-outline" id="winRetry">↻ Repetir</button><button class="btn btn-primary" id="winContinue">Siguiente →</button></div><button class="btn btn-link" id="winBack">Volver al menú</button></div></div>
+          <div class="win-actions"><button class="btn btn-primary" id="winContinue">Siguiente nivel <span class="enter-shortcut">↵ Enter</span></button><button class="btn btn-outline" id="winRetry">↻ Repetir</button></div><button class="btn btn-link" id="winBack">Ir al inicio</button></div></div>
         </div>
       </section>
       <aside class="cockpit" aria-label="Panel de navegación"><div class="cockpit-title"><span class="signal"></span> PANEL DE NAVEGACIÓN <span class="cockpit-dots">● ● ●</span></div>
         <form class="vector-console panel" id="moveForm" novalidate><label class="console-label" for="compA">VECTOR DE DESPLAZAMIENTO</label>
-          <div class="pair-input"><span class="paren">(</span><input id="compA" type="number" inputmode="numeric" step="1" placeholder="a" aria-label="Componente horizontal a" autocomplete="off"><span class="comma">,</span><input id="compB" type="number" inputmode="numeric" step="1" placeholder="b" aria-label="Componente vertical b" autocomplete="off"><span class="paren">)</span></div>
+          <div class="pair-input" aria-label="Vector de desplazamiento (a, b)">
+            <span class="paren" aria-hidden="true">(</span>
+            <div class="component-control"><button class="vector-step" type="button" data-comp="compA" data-delta="1" aria-label="Aumentar a en una unidad">+</button><input id="compA" type="number" inputmode="numeric" step="1" placeholder="a" aria-label="Componente horizontal a" autocomplete="off"><button class="vector-step" type="button" data-comp="compA" data-delta="-1" aria-label="Disminuir a en una unidad">−</button></div>
+            <span class="comma" aria-hidden="true">,</span>
+            <div class="component-control"><button class="vector-step" type="button" data-comp="compB" data-delta="1" aria-label="Aumentar b en una unidad">+</button><input id="compB" type="number" inputmode="numeric" step="1" placeholder="b" aria-label="Componente vertical b" autocomplete="off"><button class="vector-step" type="button" data-comp="compB" data-delta="-1" aria-label="Disminuir b en una unidad">−</button></div>
+            <span class="paren" aria-hidden="true">)</span>
+          </div>
           <div class="console-actions"><span id="gameLimit" class="limit-label">MÁX. ±5</span><button id="execute" class="btn btn-primary" type="submit">IMPULSAR <span>↗</span></button></div>
           <div class="input-error" id="inputError" role="status" aria-live="polite"></div>
         </form>
@@ -428,11 +527,11 @@ html[data-theme="mono"] .shell{filter:grayscale(1)}
     <section class="screen hidden" id="libraryScreen"><div class="sectionbar"><div><div class="kicker">HANGAR DE MISIONES</div><h2>Mis niveles</h2></div><button class="btn btn-primary" id="libraryCreate">+ Crear nivel</button></div><div class="library-layout"><div class="panel library-panel"><h3>Guardados</h3><div class="level-library" id="levelLibrary"></div></div><div class="panel library-panel"><h3>Importar una misión</h3><p>Recibe un archivo o pega un código compartido.</p><button class="btn btn-outline" id="importFile">↑ Elegir archivo</button><input hidden type="file" accept=".json,application/json" id="importFileInput"><textarea id="importCode" placeholder="NAVECTOR5: ..." aria-label="Código de nivel"></textarea><button class="btn btn-primary" id="importCodeBtn">Importar código</button><div class="library-status" id="libraryStatus" role="status">Los niveles se comparten directamente, sin servidor.</div></div></div></section>
   </main>
   <!-- ÚNICA AYUDA EN VENTANA MODAL -->
-  <div class="modal-backdrop hidden" id="helpModal"><div class="help-dialog" role="dialog" aria-modal="true" aria-labelledby="helpTitle"><button id="modalClose" class="modal-x" aria-label="Cerrar">×</button><div class="kicker">MANUAL DE VUELO</div><h2 id="helpTitle">¿Cómo jugar?</h2><p>Desde <strong>INICIO</strong>, llega al <strong>PORTAL</strong> escribiendo el vector de desplazamiento <strong>(a, b)</strong>.</p><div class="example-vector"><svg viewBox="0 0 350 130" width="100%" aria-label="Ejemplo de vector desde (1,1) hasta (4,3)"><defs><marker id="modarr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="var(--sv-60e7f7)"/></marker></defs><g stroke="var(--sv-4e7798)" opacity=".4"><path d="M30 12V115M80 12V115M130 12V115M180 12V115M230 12V115M280 12V115M330 12V115M30 12H330M30 37H330M30 62H330M30 87H330M30 112H330"/></g><circle cx="80" cy="87" r="8" fill="var(--sv-ffdb77)"/><circle cx="230" cy="37" r="8" fill="var(--sv-23e9b1)"/><path d="M80 87L230 37" stroke="var(--sv-60e7f7)" stroke-width="4" marker-end="url(#modarr)"/><text x="110" y="115" font-size="14" fill="var(--sv-d7ecff)">Vector (3, 2)</text></svg></div><div class="help-grid"><div><span class="help-symbol danger-s">▰</span><strong>Barreras</strong><small>No puedes tocarlas ni atravesarlas.</small></div><div><span class="help-symbol warning-s">◈</span><strong>Turbulencias</strong><small>Puedes cruzarlas, pero no terminar allí.</small></div><div><span class="help-symbol success-s">◎</span><strong>Portal</strong><small>Llega exactamente a su nodo; si hay un núcleo, recógelo antes.</small></div><div><span class="help-symbol core-s">⬡</span><strong>Núcleo</strong><small>Debes aterrizar aquí antes de entrar al portal.</small></div></div><p class="help-tip">Cada desplazamiento sigue una <strong>línea recta</strong>. Puedes avanzar en cualquier dirección permitida por la misión.</p><button id="modalGotIt" class="btn btn-primary">Entendido</button></div></div>
+  <div class="modal-backdrop hidden" id="helpModal"><div class="help-dialog" role="dialog" aria-modal="true" aria-labelledby="helpTitle"><button id="modalClose" class="modal-x" aria-label="Cerrar">×</button><div class="kicker">MANUAL DE VUELO</div><h2 id="helpTitle">¿Cómo jugar?</h2><p>Desde <strong>INICIO</strong>, llega al <strong>PORTAL</strong> escribiendo el vector de desplazamiento <strong>(a, b)</strong>.</p><div class="example-vector"><svg viewBox="0 0 350 130" width="100%" aria-label="Ejemplo de vector desde (1,1) hasta (4,3)"><defs><marker id="modarr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="var(--sv-60e7f7)"/></marker></defs><g stroke="var(--sv-4e7798)" opacity=".4"><path d="M30 12V115M80 12V115M130 12V115M180 12V115M230 12V115M280 12V115M330 12V115M30 12H330M30 37H330M30 62H330M30 87H330M30 112H330"/></g><circle cx="80" cy="87" r="8" fill="var(--sv-ffdb77)"/><circle cx="230" cy="37" r="8" fill="var(--sv-23e9b1)"/><path d="M80 87L230 37" stroke="var(--sv-60e7f7)" stroke-width="4" marker-end="url(#modarr)"/><text x="110" y="115" font-size="14" fill="var(--sv-d7ecff)">Vector (3, 2)</text></svg></div><div class="help-grid"><div><span class="help-symbol danger-s">▰</span><strong>Barreras ▨</strong><small>Rayas diagonales: no puedes tocarlas.</small></div><div><span class="help-symbol warning-s">◈</span><strong>Turbulencias ≋</strong><small>Remolinos: puedes cruzarlos, no detenerte.</small></div><div><span class="help-symbol success-s">◎</span><strong>Portal ◎</strong><small>Anillos concéntricos: llega al nodo exacto.</small></div><div><span class="help-symbol core-s">⬡</span><strong>Núcleo ⬡</strong><small>Hexágono: recógelo antes de entrar al portal.</small></div></div><p class="help-tip">Cada desplazamiento sigue una <strong>línea recta</strong>. Puedes avanzar en cualquier dirección permitida por la misión.</p><button id="modalGotIt" class="btn btn-primary">Entendido</button></div></div>
 </div>
 <script>
 'use strict';
-// Navector v6: segmentos, misión espacial, editor local y códigos de intercambio.
+// Navector v8: segmentos, misión espacial, editor local y códigos de intercambio.
 const TEACHER_MODE = false;
 const $ = id => document.getElementById(id);
 const P = (x,y) => ({x,y});
@@ -514,6 +613,8 @@ let editTool='vertical',selectedBar=-1,drag=null;
 let mode='campaign',playIndex=0,active=cp(LEVELS[0]),player=cp(active.start),moves=0,fails=0;
 let activated=false,passed=false,flight=null,flightId=0,testDraft=null,playingSavedId=null,optimal=0,lastAngle=0,impact=null,impacting=false;
 let soundOn=read('navector_v4_sound',false),audioCtx=null;
+let lastFlightFrom=null;
+let customBest=read('navector_v8_custom_best',{}),winShownAt=0,victoryFx=false;
 const NAV_THEMES=['nebula','daylight','mono','solar'];
 let chosenTheme=read('navector_v6_theme','nebula');
 if(!NAV_THEMES.includes(chosenTheme))chosenTheme='nebula';
@@ -531,6 +632,40 @@ const OPTIMA=LEVELS.map(l=>bfs(l)?.length??null);
 function show(name){flightId++;flight=null;screen=name;for(const s of SCREENS)$(s+'Screen').classList.toggle('hidden',name!==s);for(const btn of document.querySelectorAll('.topnav button'))btn.classList.remove('active');const nav={home:'navHome',campaign:'navCampaign',editor:'navEditor',library:'navLibrary'};$(nav[name])?.classList.add('active');$('libraryCount').textContent=collection.length?`(${collection.length})`:'';if(name==='campaign')renderCampaign();if(name==='editor'){renderEditor();editMsg('Arrastra una barrera o sus extremos para ajustar el tamaño.')};if(name==='library')renderLibrary()}
 function hud(text,bad=false){$('hudMessage').textContent=text;$('spaceBoard').querySelector('.board-hud').classList.toggle('error',bad)}
 function errorText(t){$('inputError').textContent=t}
+// Controles táctiles sin teclado virtual: el jugador ajusta cada componente de 1 en 1.
+const coarsePointer = window.matchMedia('(pointer:coarse)');
+let touchControls=false;
+function setAdaptiveViewBox(){
+ const portrait=touchControls&&window.matchMedia('(max-width:620px) and (orientation:portrait)').matches;
+ $('gameBoard').setAttribute('viewBox',portrait?'42 32 719 538':'0 0 850 590');
+}
+function applyVectorInputMode(){
+ touchControls=coarsePointer.matches;
+ setAdaptiveViewBox();
+ document.documentElement.classList.toggle('touch-controls',touchControls);
+ for(const id of ['compA','compB']){
+  const el=$(id); el.readOnly=touchControls; el.inputMode=touchControls?'none':'numeric'; el.tabIndex=touchControls?-1:0;
+  if(touchControls&&el.value==='')el.value='0';
+  if(touchControls&&document.activeElement===el)el.blur();
+ }
+ syncVectorSteps();
+}
+function resetVectorInputs(){
+ $('compA').value=touchControls?'0':'';$('compB').value=touchControls?'0':'';
+ syncVectorSteps();
+}
+function syncVectorSteps(){
+ const max=active?.max??5;
+ for(const b of document.querySelectorAll('.vector-step')){
+  const n=Number($(b.dataset.comp).value)||0,d=Number(b.dataset.delta);
+  b.disabled=!touchControls||!!flight||passed||impacting||(d>0?n>=max:n<=-max);
+ }
+}
+function stepVector(id,delta){
+ if(!touchControls||flight||passed||impacting||!active)return;
+ const el=$(id),value=clamp((Number(el.value)||0)+delta,-active.max,active.max);
+ el.value=String(value); errorText(''); syncVectorSteps();
+}
 function openHelp(){$('helpModal').classList.remove('hidden');$('modalClose').focus()}
 function closeHelp(){$('helpModal').classList.add('hidden')}
 function polar(cx,cy,r,degree){const a=degree*Math.PI/180;return{x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)}}
@@ -557,19 +692,20 @@ function defs(){return `<defs>
  <filter id="energyGlow" x="-200%" y="-100%" width="500%" height="300%"><feGaussianBlur stdDeviation="4"/></filter>
  <filter id="portalGlow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="4"/></filter>
  <radialGradient id="voidAura"><stop stop-color="var(--void-center)" stop-opacity=".95"/><stop offset=".46" stop-color="var(--void-ring)" stop-opacity=".67"/><stop offset="1" stop-color="var(--void-spark)" stop-opacity="0"/></radialGradient>
+ <pattern id="barrierHatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><rect width="12" height="12" fill="none"/><path d="M1 0V12" stroke="var(--sv-fff0c3)" stroke-width="3.3" opacity=".65"/><path d="M8 0V12" stroke="var(--sv-5b1238)" stroke-width="2.5" opacity=".65"/></pattern>
  <marker id="vectorArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="var(--sv-78edff)"/></marker></defs>`}
 function decorations(){let s=defs();s+=`<rect x="58" y="46" width="692" height="498" rx="18" fill="var(--sv-0a162a)" stroke="var(--sv-51a7b9)" stroke-opacity=".6" stroke-width="3"/><rect x="66" y="53" width="678" height="484" rx="12" fill="var(--sv-164758)" stroke="var(--sv-367e8d)" stroke-width="1.5"/>`;
  for(let x=-6;x<=6;x++){s+=`<line x1="${X(x)}" x2="${X(x)}" y1="${Y(4)}" y2="${Y(-4)}" stroke="${x===0?'var(--sv-90dfe7)':'var(--sv-5e9da9)'}" stroke-opacity="${x===0?.94:.46}" stroke-width="${x===0?2.7:1.1}"/>`;s+=`<text x="${X(x)}" y="554" text-anchor="middle" font-weight="760" font-size="13" fill="var(--sv-c0e5eb)">${x}</text>`}
  for(let y=-4;y<=4;y++){s+=`<line x1="${X(-6)}" x2="${X(6)}" y1="${Y(y)}" y2="${Y(y)}" stroke="${y===0?'var(--sv-90dfe7)':'var(--sv-5e9da9)'}" stroke-opacity="${y===0?.94:.46}" stroke-width="${y===0?2.7:1.1}"/>`;s+=`<text x="73" y="${Y(y)+4}" text-anchor="middle" font-weight="760" font-size="13" fill="var(--sv-c0e5eb)">${y}</text>`}
  return s+`<circle cx="${X(0)}" cy="${Y(0)}" r="4" fill="var(--sv-bafaff)"/><text x="740" y="320" font-size="15" font-weight="900" fill="var(--sv-dcfaff)">x</text><text x="${X(0)+8}" y="72" font-size="15" font-weight="900" fill="var(--sv-dcfaff)">y</text>`;
 }
-function energyRect(r,editable=false,idx=-1,selected=false){const x=X(r.x0),y=Y(r.y1),w=(r.x1-r.x0)*52,h=(r.y1-r.y0)*52;const attrs=editable?`class="editbar" data-role="bar" data-index="${idx}"`:'';return `<rect x="${x-5}" y="${y-4}" width="${w+10}" height="${h+8}" rx="5" fill="var(--sv-ff4d9a)" opacity=".18" filter="url(#energyGlow)"/><rect ${attrs} x="${x}" y="${y}" width="${w}" height="${h}" rx="3" fill="${selected?'var(--sv-ffd071)':'url(#energyFill)'}" stroke="${selected?'var(--sv-fff3c5)':'var(--sv-ffb6d5)'}" stroke-width="${selected?3:1.1}"/><rect x="${x+w*.34}" y="${y+1}" width="${w*.32}" height="${Math.max(0,h-2)}" rx="2" fill="var(--sv-ffe1f0)" opacity=".40" class="energyCore" style="pointer-events:none"/>`}
+function energyRect(r,editable=false,idx=-1,selected=false){const x=X(r.x0),y=Y(r.y1),w=(r.x1-r.x0)*52,h=(r.y1-r.y0)*52;const attrs=editable?`class="editbar" data-role="bar" data-index="${idx}"`:'';return `<rect x="${x-5}" y="${y-4}" width="${w+10}" height="${h+8}" rx="5" fill="var(--sv-ff4d9a)" opacity=".18" filter="url(#energyGlow)"/><rect ${attrs} x="${x}" y="${y}" width="${w}" height="${h}" rx="3" fill="${selected?'var(--sv-ffd071)':'url(#energyFill)'}" stroke="${selected?'var(--sv-fff3c5)':'var(--sv-ffb6d5)'}" stroke-width="${selected?3:1.1}"/><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="2" fill="url(#barrierHatch)" opacity=".7" style="pointer-events:none"/><rect x="${x+w*.34}" y="${y+1}" width="${w*.32}" height="${Math.max(0,h-2)}" rx="2" fill="var(--sv-ffe1f0)" opacity=".22" class="energyCore" style="pointer-events:none"/>`}
 function obstaclesSvg(L,editable=false){let s='';for(const r of rectangles({walls:L.walls||[],bars:[]}))s+=energyRect(r);
  for(let i=0;i<(L.bars||[]).length;i++){const b=L.bars[i],r=rectOfBar(b),selected=editable&&i===selectedBar;s+=energyRect(r,editable,i,selected);if(editable){const a=b.orientation==='h'?P(b.cx-b.len/2,b.cy):P(b.cx,b.cy-b.len/2),z=b.orientation==='h'?P(b.cx+b.len/2,b.cy):P(b.cx,b.cy+b.len/2);s+=`<line data-role="bar" data-index="${i}" x1="${X(a.x)}" y1="${Y(a.y)}" x2="${X(z.x)}" y2="${Y(z.y)}" stroke="transparent" stroke-width="25"/>`;if(selected)for(const [end,p] of [['start',a],['end',z]])s+=`<circle class="${b.orientation==='h'?'handle-h':'handle'}" data-role="handle" data-index="${i}" data-end="${end}" cx="${X(p.x)}" cy="${Y(p.y)}" r="12" stroke="var(--sv-764c26)" stroke-width="2" fill="var(--sv-ffdd7f)"/>`}}
- for(let i=0;i<(L.pads||[]).length;i++){const p=L.pads[i],x=X(p.x),y=Y(p.y);s+=`<g ${editable?`data-role="pad" data-index="${i}"`:''}><circle cx="${x}" cy="${y}" r="22" fill="var(--sv-f7bc42)" fill-opacity=".16" stroke="var(--sv-ffcf69)" stroke-width="2" stroke-dasharray="5 4" class="turbulence-ring"/><path d="M${x} ${y-14} l14 14 -14 14 -14 -14Z" fill="var(--sv-ffbf48)" opacity=".85"/><path d="M${x-8} ${y} h16 M${x} ${y-8}v16" stroke="var(--sv-68451f)" stroke-width="2"/></g>`}
+ for(let i=0;i<(L.pads||[]).length;i++){const p=L.pads[i],x=X(p.x),y=Y(p.y);s+=`<g ${editable?`data-role="pad" data-index="${i}"`:''}><circle cx="${x}" cy="${y}" r="22" fill="var(--sv-f7bc42)" fill-opacity=".16" stroke="var(--sv-ffcf69)" stroke-width="2" stroke-dasharray="5 4" class="turbulence-ring"/><path d="M${x} ${y-14} l14 14 -14 14 -14 -14Z" fill="var(--sv-ffbf48)" opacity=".85"/><path d="M${x-9} ${y+4} q8 -13 16 -2 m-13 7 q9 -8 13 -1" stroke="var(--sv-68451f)" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M${x-14} ${y-18}l-4 -6 m31 37 5 6" stroke="var(--sv-ffdb8a)" stroke-width="2" stroke-linecap="round"/></g>`}
  return s;
 }
-function markersSvg(L,editable=false){let s='';for(const [which,p,label,col] of [['start',L.start,'INICIO','var(--sv-ffdd77)'],['goal',L.goal,'PORTAL','var(--sv-34ffc2)']]){const x=X(p.x),y=Y(p.y);if(which==='goal')s+=`<g ${editable?'class="anchor" data-role="anchor" data-which="goal"':''}><circle cx="${x}" cy="${y}" r="29" fill="var(--sv-20e9ac)" opacity=".16" filter="url(#portalGlow)"/><circle cx="${x}" cy="${y}" r="23" fill="var(--sv-12bba7)" fill-opacity=".2" stroke="${col}" stroke-width="4" stroke-dasharray="24 8" class="portal-ring"/><circle cx="${x}" cy="${y}" r="13" fill="none" stroke="var(--sv-ccfff2)" stroke-width="3"/><circle cx="${x}" cy="${y}" r="6" fill="var(--sv-51ffe0)"/></g>`;
+function markersSvg(L,editable=false){let s='';for(const [which,p,label,col] of [['start',L.start,'INICIO','var(--sv-ffdd77)'],['goal',L.goal,'PORTAL','var(--sv-34ffc2)']]){const x=X(p.x),y=Y(p.y);if(which==='goal')s+=`<g ${editable?'class="anchor" data-role="anchor" data-which="goal"':''}><circle cx="${x}" cy="${y}" r="29" fill="var(--sv-20e9ac)" opacity=".16" filter="url(#portalGlow)"/><circle cx="${x}" cy="${y}" r="23" fill="var(--sv-12bba7)" fill-opacity=".2" stroke="${col}" stroke-width="4" stroke-dasharray="24 8" class="portal-ring"/><circle cx="${x}" cy="${y}" r="13" fill="none" stroke="var(--sv-ccfff2)" stroke-width="3"/><circle cx="${x}" cy="${y}" r="6" fill="var(--sv-51ffe0)"/><path d="M${x-6} ${y}h12 m-6 -6v12" stroke="var(--sv-0c3540)" stroke-width="1.5" opacity=".7"/></g>`;
  else s+=`<g ${editable?'class="anchor" data-role="anchor" data-which="start"':''}><circle cx="${x}" cy="${y}" r="24" fill="var(--sv-ffd065)" opacity=".14" stroke="var(--sv-ffdc8c)" stroke-width="2" stroke-dasharray="6 5"/><circle cx="${x}" cy="${y}" r="8" fill="var(--sv-ffe18b)"/></g>`;
  s+=`<text x="${x}" y="${which==='start'?y+40:y-35}" text-anchor="middle" font-size="12" font-weight="900" fill="${col}" letter-spacing="1.5">${label}</text>`}
  if(L.core){const p=L.core,x=X(p.x),y=Y(p.y),lit=screen==='game'&&active===L&&activated;
@@ -595,6 +731,21 @@ function wormholeSvg(p,progress=1){
  <path d="M-37 -7 Q-6 -45 23 -19 M-29 20 Q5 39 33 7" fill="none" stroke="var(--void-spark)" stroke-width="2.5" stroke-linecap="round" opacity=".85"/>
  </g>`;
 }
+function failureTraceSvg(hit){
+ if(!hit?.from)return '';
+ const a=hit.from,b=hit.pos,x=X(b.x),y=Y(b.y),danger=hit.kind==='turbulence'?'var(--sv-ffd069)':hit.kind==='void'?'var(--void-spark)':'var(--sv-ff527d)';
+ return `<g class="failure-trace" aria-hidden="true">
+ <path d="M${X(a.x)} ${Y(a.y)} L${x} ${y}" stroke="var(--sv-07172b)" stroke-opacity=".75" stroke-width="12" stroke-linecap="round"/>
+ <path d="M${X(a.x)} ${Y(a.y)} L${x} ${y}" stroke="${danger}" stroke-width="4.5" stroke-dasharray="10 5" stroke-linecap="round"/>
+ <circle class="failure-point-halo" cx="${x}" cy="${y}" r="28" fill="${danger}" fill-opacity=".16" stroke="${danger}" stroke-width="2"/>
+ <circle cx="${x}" cy="${y}" r="7" fill="${danger}" stroke="var(--sv-ffffff)" stroke-width="2"/>
+ <path d="M${x-20} ${y}h9m22 0h9M${x} ${y-20}v9m0 22v9" fill="none" stroke="${danger}" stroke-width="3" stroke-linecap="round"/>
+ </g>`;
+}
+function victoryArrivalSvg(p){
+ const x=X(p.x),y=Y(p.y);
+ return `<g class="arrival-effect" transform="translate(${x} ${y})"><circle r="45" fill="none" stroke="var(--sv-23e9b1)" stroke-width="5"/><circle r="64" fill="none" stroke="var(--sv-8cf5ff)" stroke-width="3" stroke-dasharray="8 12"/><path d="M-78 0H78M0 -78V78" stroke="var(--sv-65ffe8)" stroke-opacity=".45" stroke-width="3"/></g>`;
+}
 function drawGame(){
  if(screen!=='game')return;
  let s=decorations()+obstaclesSvg(active)+markersSvg(active),pos=player,angle=lastAngle,scale=1,opacity=1;
@@ -608,27 +759,37 @@ function drawGame(){
   }
  }
  if(impact){
-  pos=impact.pos;angle=impact.angle;
+  s+=failureTraceSvg(impact);pos=impact.pos;angle=impact.angle;
   if(impact.kind==='void'){s+=wormholeSvg(impact.pos,1);scale=.02;opacity=0;}
   else s+=`<g transform="translate(${X(pos.x)} ${Y(pos.y)})" class="impactBurst"><circle r="24" fill="none" stroke="${impact.kind==='turbulence'?'var(--sv-ffd069)':impact.kind==='core'?'var(--sv-bb87ff)':'var(--sv-ff527d)'}" stroke-width="7"/><circle r="38" fill="none" stroke="var(--sv-fff0c3)" stroke-opacity=".9" stroke-width="2.5"/>${Array.from({length:10},(_,i)=>{const a=i*Math.PI/5;return `<path d="M${28*Math.cos(a)} ${28*Math.sin(a)} L${(44+i%3*4)*Math.cos(a)} ${(44+i%3*4)*Math.sin(a)}" stroke="var(--sv-ffdd8e)" stroke-width="3" stroke-linecap="round"/>`}).join('')}</g>`;
  }
+ if(victoryFx)s+=victoryArrivalSvg(active.goal);
  s+=`<g transform="translate(${X(pos.x)} ${Y(pos.y)}) scale(${scale}) translate(${-X(pos.x)} ${-Y(pos.y)})">${shipSvg(pos,angle,impact?.35:opacity)}</g>`;
  $('gameBoard').innerHTML=s;
 }
-function updateGame(){drawGame();drawGauge();$('execute').disabled=!!flight||passed||impacting}
+function updateGame(){drawGame();drawGauge();$('execute').disabled=!!flight||passed||impacting;syncVectorSteps()}
 function renderCampaign(){let grid=$('levelGrid');grid.innerHTML='';for(let i=0;i<10;i++){const b=document.createElement('button'),locked=!TEACHER_MODE&&i>=unlocked;b.className='level-btn'+(i===selectedLevel?' selected':'')+(locked?' locked':'')+(best[i]!=null?' done':'');b.disabled=locked;b.innerHTML=`<strong>${String(i+1).padStart(2,'0')}</strong><small>${locked?'🔒':best[i]!=null?'✓ '+best[i]+' mov.':'MISIÓN'}</small>`;b.onclick=()=>{selectedLevel=i;renderCampaign()};grid.append(b)}$('campaignProgress').textContent=TEACHER_MODE?'Acceso docente: 10/10':`${unlocked} / 10 disponibles`;$('selectedName').textContent=LEVELS[selectedLevel].name;$('selectedDesc').textContent=LEVELS[selectedLevel].desc;$('selectedTag').textContent=`${String(selectedLevel+1).padStart(2,'0')} / 10`;$('launchLevel').disabled=!TEACHER_MODE&&selectedLevel>=unlocked;$('campaignArt').innerHTML=decorations()+obstaclesSvg(LEVELS[selectedLevel])+markersSvg(LEVELS[selectedLevel])+shipSvg(LEVELS[selectedLevel].start)}
-function launch(L,which='campaign',i=0,id=null){flightId++;mode=which;playIndex=i;playingSavedId=id;active=cp(L);player=cp(active.start);moves=0;fails=0;activated=false;passed=false;flight=null;impact=null;impacting=false;lastAngle=0;optimal=bfs(active)?.length??null;$('compA').value='';$('compB').value='';errorText('');$('winOverlay').classList.add('hidden');$('spaceBoard').classList.remove('victory','hit','lost');$('gameEyebrow').textContent=which==='campaign'?`CAMPAÑA · MISIÓN ${String(i+1).padStart(2,'0')}`:which==='test'?'CREADOR · PRUEBA':'MISIÓN COMPARTIDA';$('gameTitle').textContent=active.name;$('gameLimit').textContent=`MÁX. ±${active.max}`;show('game');$('coreStatus').classList.toggle('hidden',!active.core);$('coreStatusText').textContent='NÚCLEO PENDIENTE';$('coreStatus').classList.remove('collected');hud(active.core?'RECUPERA EL NÚCLEO ANTES DEL PORTAL':'SISTEMAS LISTOS');updateGame();$('compA').focus({preventScroll:true})}
+function launch(L,which='campaign',i=0,id=null){flightId++;mode=which;playIndex=i;playingSavedId=id;active=cp(L);player=cp(active.start);moves=0;fails=0;activated=false;passed=false;flight=null;impact=null;impacting=false;victoryFx=false;winShownAt=0;lastAngle=0;lastFlightFrom=null;optimal=bfs(active)?.length??null;resetVectorInputs();errorText('');$('winOverlay').classList.add('hidden');$('spaceBoard').classList.remove('victory','hit','lost');$('gameEyebrow').textContent=which==='campaign'?`CAMPAÑA · MISIÓN ${String(i+1).padStart(2,'0')}`:which==='test'?'CREADOR · PRUEBA':'MISIÓN COMPARTIDA';$('gameTitle').textContent=active.name;$('gameLimit').textContent=`MÁX. ±${active.max}`;show('game');$('coreStatus').classList.toggle('hidden',!active.core);$('coreStatusText').textContent='NÚCLEO PENDIENTE';$('coreStatus').classList.remove('collected');hud(active.core?'RECUPERA EL NÚCLEO ANTES DEL PORTAL':'SISTEMAS LISTOS');updateGame();if(!touchControls)$('compA').focus({preventScroll:true})}
 function restart(){if(flight||impacting)return;launch(active,mode,playIndex,playingSavedId)}
-function beep(kind){if(!soundOn)return;try{audioCtx ||= new (window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();const seq=kind==='win'?[[560,.12],[740,.13],[1040,.25]]:kind==='core'?[[620,.11],[910,.18]]:kind==='flight'?[[180,.08]]:kind==='turbulence'?[[160,.15],[110,.19]]:kind==='void'?[[430,.15],[240,.19],[110,.3]]:[[155,.12],[75,.25]];let at=audioCtx.currentTime;for(const [freq,dur] of seq){const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=kind==='win'||kind==='core'?'sine':'triangle';o.frequency.setValueAtTime(freq,at);g.gain.setValueAtTime(.001,at);g.gain.exponentialRampToValueAtTime(.075,at+.012);g.gain.exponentialRampToValueAtTime(.001,at+dur);o.connect(g).connect(audioCtx.destination);o.start(at);o.stop(at+dur+.02);at+=dur*.86}}catch{}}
+function beep(kind){
+ if(!soundOn)return;
+ try{
+  audioCtx ||= new (window.AudioContext||window.webkitAudioContext)();
+  if(audioCtx.state==='suspended')audioCtx.resume();
+  const seq={flight:[[230,390,.13,'sine',.025]],barrier:[[350,125,.13,'sawtooth',.052],[160,65,.22,'triangle',.045]],turbulence:[[185,90,.22,'sine',.05],[95,155,.18,'triangle',.038]],core:[[540,800,.13,'sine',.042],[760,1020,.18,'sine',.037]],win:[[470,590,.12,'sine',.045],[620,760,.12,'sine',.045],[800,990,.14,'sine',.045],[1010,1170,.24,'sine',.052]],optimal:[[560,710,.12,'sine',.048],[740,920,.12,'sine',.048],[900,1130,.15,'sine',.047],[1180,1420,.30,'sine',.055]],void:[[440,260,.20,'triangle',.043],[210,90,.28,'sawtooth',.031]]}[kind]||[[170,90,.13,'triangle',.04]];
+  let now=audioCtx.currentTime+.012;
+  for(const [from,to,dur,type,volume] of seq){const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.setValueAtTime(from,now);o.frequency.exponentialRampToValueAtTime(Math.max(40,to),now+dur);g.gain.setValueAtTime(.001,now);g.gain.exponentialRampToValueAtTime(volume,now+.018);g.gain.exponentialRampToValueAtTime(.001,now+dur);o.connect(g).connect(audioCtx.destination);o.start(now);o.stop(now+dur+.02);now+=dur*.82}
+ }catch{}
+}
 function setSound(){soundOn=!soundOn;store('navector_v4_sound',soundOn);$('soundToggle').textContent=soundOn?'♫':'♪̸';$('soundToggle').setAttribute('aria-label',soundOn?'Silenciar sonidos':'Activar sonidos');$('soundToggle').title=soundOn?'Desactivar sonido':'Activar sonido';if(soundOn)beep('core')}
 function triggerFailure(kind,reason,pos,angle,token){
- impacting=true;impact={kind,pos:cp(pos),angle};hud(reason,true);
+ impacting=true;impact={kind,pos:cp(pos),from:cp(lastFlightFrom||player),angle};hud(reason,true);
  const titles={barrier:'¡COLISIÓN!',turbulence:'¡TURBULENCIA!',core:'FALTA EL NÚCLEO',void:'¡NAVE EXTRAVIADA!'};
  const subs={barrier:'La nave chocó con una barrera',turbulence:'No puedes detenerte en esa zona',core:'Recoge el núcleo antes de entrar al portal',void:'Un agujero negro absorbió la nave'};
  $('impactText').textContent=titles[kind]||'INTENTO FALLIDO';$('impactDetail').textContent=subs[kind]||reason;
  $('impactOverlay').classList.remove('active');void $('impactOverlay').offsetWidth;$('impactOverlay').classList.add('active');
  $('spaceBoard').classList.remove('hit');void $('spaceBoard').offsetWidth;$('spaceBoard').classList.add(kind==='void'?'lost':'hit');beep(kind);
- updateGame();setTimeout(()=>{if(token!==flightId||screen!=='game')return;player=cp(active.start);activated=false;impact=null;impacting=false;$('coreStatusText').textContent='NÚCLEO PENDIENTE';$('coreStatus').classList.remove('collected');$('impactOverlay').classList.remove('active');$('spaceBoard').classList.remove('hit','lost');hud('NUEVO INTENTO · DESDE EL INICIO');updateGame();$('compA').focus({preventScroll:true})},kind==='void'?1450:1030);
+ updateGame();setTimeout(()=>{if(token!==flightId||screen!=='game')return;player=cp(active.start);moves=0;lastFlightFrom=null;activated=false;impact=null;impacting=false;$('coreStatusText').textContent='NÚCLEO PENDIENTE';$('coreStatus').classList.remove('collected');$('impactOverlay').classList.remove('active');$('spaceBoard').classList.remove('hit','lost');hud('NUEVO INTENTO · DESDE EL INICIO');updateGame();if(!touchControls)$('compA').focus({preventScroll:true})},kind==='void'?1450:1030);
 }
 function finishFlight(t,from,dest,token){if(token!==flightId||screen!=='game')return;flight=null;moves++;
  if(t.crash){fails++;const p=t.kind==='void'?blackHolePosition(from,dest,t.t):P(from.x+(dest.x-from.x)*t.t,from.y+(dest.y-from.y)*t.t);triggerFailure(t.kind,t.reason,p,lastAngle,token)}
@@ -640,14 +801,45 @@ function finishFlight(t,from,dest,token){if(token!==flightId||screen!=='game')re
    else win();
   }else updateGame();
  }
- $('compA').value='';$('compB').value='';if(!impacting)updateGame();if(!passed&&!impacting)$('compA').focus({preventScroll:true});
+ resetVectorInputs();if(!impacting)updateGame();if(!passed&&!impacting)if(!touchControls)$('compA').focus({preventScroll:true});
 }
-function execute(){if(flight||passed||impacting)return;const dest=previewEnd();if(!dest){errorText('Ingresa dos números enteros.');return}const t=testMove(player,dest,active);if(!t.valid){errorText(t.reason);return}errorText('');const from=cp(player),token=++flightId,dx=dest.x-from.x,dy=dest.y-from.y,angle=Math.atan2(-dy,dx)*180/Math.PI;lastAngle=angle;flight={from,to:t.kind==='void'?blackHolePosition(from,dest,t.t):dest,visible:0,crash:t.crash,angle,kind:t.kind};$('execute').disabled=true;hud('TRAZANDO VECTOR');beep('flight');let start=null;function step(time){if(token!==flightId||!flight)return;if(start===null)start=time;const f=clamp((time-start)/(t.kind==='void'?850:560),0,1);flight.visible=f*(t.kind==='void'?1:t.crash?Math.max(0,t.t-.004):1);drawGame();if(f<1){requestAnimationFrame(step)}else finishFlight(t,from,dest,token)}requestAnimationFrame(step)}
-function win(){passed=true; $('winShare').classList.add('hidden'); $('shareStatus').textContent=''; $('shareManual').classList.add('hidden');beep('win');$('spaceBoard').classList.add('victory');$('winYour').textContent=String(moves);$('winMinimum').textContent=optimal==null?'—':String(optimal);$('winTitle').textContent=mode==='test'?'¡Nivel probado!':'¡Portal alcanzado!';$('winNote').textContent=optimal!=null&&moves===optimal?'¡Ruta óptima! ¡Excelente navegación!':`¡Misión cumplida! Puedes repetir e intentar alcanzar ${optimal} movimientos.`;
- if(mode==='campaign'){unlocked=Math.max(unlocked,Math.min(10,playIndex+2));store('navector_v4_unlocked',unlocked);if(best[playIndex]==null||moves<best[playIndex])best[playIndex]=moves;store('navector_v4_best',best);$('winContinue').textContent=playIndex===9?'Campaña →':'Siguiente →'}
- else if(mode==='test'){saveVerifiedDraft();$('winNote').textContent='Superaste tu diseño. Ya está guardado y puedes compartirlo.';$('winShare').classList.remove('hidden');$('winContinue').textContent='Mis niveles →'}
- else $('winContinue').textContent='Mis niveles →';
- setTimeout(()=>{if(screen==='game'&&passed)$('winOverlay').classList.remove('hidden')},450)}
+function execute(){if(flight||passed||impacting)return;const dest=previewEnd();if(!dest){errorText('Ingresa dos números enteros.');return}const t=testMove(player,dest,active);if(!t.valid){errorText(t.reason);return}errorText('');const from=cp(player);lastFlightFrom=cp(from);const token=++flightId,dx=dest.x-from.x,dy=dest.y-from.y,angle=Math.atan2(-dy,dx)*180/Math.PI;lastAngle=angle;flight={from,to:t.kind==='void'?blackHolePosition(from,dest,t.t):dest,visible:0,crash:t.crash,angle,kind:t.kind};$('execute').disabled=true;hud('TRAZANDO VECTOR');beep('flight');let start=null;function step(time){if(token!==flightId||!flight)return;if(start===null)start=time;const f=clamp((time-start)/(t.kind==='void'?850:560),0,1);flight.visible=f*(t.kind==='void'?1:t.crash?Math.max(0,t.t-.004):1);drawGame();if(f<1){requestAnimationFrame(step)}else finishFlight(t,from,dest,token)}requestAnimationFrame(step)}
+function customBestKey(L){
+ let t=JSON.stringify({start:L.start,goal:L.goal,walls:L.walls||[],bars:L.bars||[],pads:L.pads||[],max:L.max,core:L.core||null});let h=2166136261;
+ for(let i=0;i<t.length;i++)h=Math.imul(h^t.charCodeAt(i),16777619);
+ return String(h>>>0);
+}
+function win(){
+ passed=true;victoryFx=true;drawGame();
+ $('winShare').classList.add('hidden');$('shareStatus').textContent='';$('shareManual').classList.add('hidden');
+ const perfect=optimal!==null&&moves===optimal,oldBest=mode==='campaign'?best[playIndex]:customBest[customBestKey(active)];
+ const record=oldBest==null||moves<oldBest,personal=Math.min(oldBest??Infinity,moves);
+ if(mode==='campaign'){
+  unlocked=Math.max(unlocked,Math.min(10,playIndex+2));store('navector_v4_unlocked',unlocked);
+  best[playIndex]=personal;store('navector_v4_best',best);
+  $('winContinue').innerHTML=playIndex===9?'Volver a campaña <span class="enter-shortcut">↵ Enter</span>':'Siguiente nivel <span class="enter-shortcut">↵ Enter</span>';
+ }else{
+  const id=customBestKey(active);customBest[id]=personal;store('navector_v8_custom_best',customBest);
+  $('winContinue').innerHTML='Mis niveles <span class="enter-shortcut">↵ Enter</span>';
+ }
+ $('winYour').textContent=String(moves);$('winMinimum').textContent=optimal??'—';$('winBest').textContent=Number.isFinite(personal)?personal:'—';
+ $('winOverlay').classList.toggle('optimal-win',perfect);
+ $('winOverlay').classList.toggle('record-win',record&&!perfect);
+ $('winTitle').textContent=mode==='test'?'¡Diseño superado!':perfect?'¡Navegación perfecta!':'¡Portal alcanzado!';
+ $('winAchievement').textContent=perfect?'✦ RUTA ÓPTIMA ✦':record?'★ NUEVO RÉCORD PERSONAL':'MISIÓN SUPERADA';
+ $('winNote').textContent=perfect?'¡Conseguiste el mínimo de desplazamientos!':optimal!==null?`Puedes mejorar tu ruta en ${moves-optimal} ${moves-optimal===1?'movimiento':'movimientos'}. ¿Quieres intentarlo?`:'¡Misión completada! ¿Te animas a mejorar tu ruta?';
+ if(mode==='test'){saveVerifiedDraft();$('winNote').textContent='Tu nivel está validado y guardado. Ya puedes compartirlo.';$('winShare').classList.remove('hidden')}
+ $('spaceBoard').classList.add('victory');
+ beep(perfect?'optimal':'win');
+ try{if(document.activeElement instanceof HTMLElement)document.activeElement.blur()}catch{}
+ const token=flightId;
+ setTimeout(()=>{if(screen!=='game'||!passed||token!==flightId)return;victoryFx=false;drawGame();$('winOverlay').classList.remove('hidden');winShownAt=performance.now()},window.matchMedia('(prefers-reduced-motion: reduce)').matches?120:880);
+}
+function advanceAfterWin(){
+ if(screen!=='game'||!passed||$('winOverlay').classList.contains('hidden'))return;
+ if(mode==='campaign'){if(playIndex===9){selectedLevel=9;show('campaign')}else launch(LEVELS[playIndex+1],'campaign',playIndex+1)}
+ else show('library');
+}
 
 // EDITOR: interacción directa sin introducir pares ordenados.
 const TOOL_NAMES={vertical:'▮ Vertical',horizontal:'▬ Horizontal',start:'✦ Inicio',goal:'◎ Portal',turbulence:'◈ Turbulencia',core:'⬡ Núcleo',select:'✥ Mover',erase:'× Borrar'};
@@ -708,10 +900,19 @@ function renderLibrary(){const box=$('levelLibrary');box.innerHTML='';$('library
 function wire(){
  $('buildBadge').textContent=TEACHER_MODE?'DOCENTE':'ESTUDIANTE';
  for(const b of document.querySelectorAll('[data-palette]'))b.onclick=()=>applyTheme(b.dataset.palette);applyTheme(chosenTheme);
- $('soundToggle').onclick=setSound;$('soundToggle').textContent=soundOn?'♫':'♪̸';$('soundToggle').title=soundOn?'Desactivar sonido':'Activar sonido';$('brandBtn').onclick=$('navHome').onclick=()=>show('home');$('navCampaign').onclick=$('homeStart').onclick=()=>show('campaign');$('navEditor').onclick=$('homeBuild').onclick=$('libraryCreate').onclick=()=>show('editor');$('navLibrary').onclick=()=>show('library');$('helpBtn').onclick=$('gameHow').onclick=openHelp;$('modalClose').onclick=$('modalGotIt').onclick=closeHelp;$('helpModal').addEventListener('click',e=>{if(e.target===$('helpModal'))closeHelp()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeHelp()});
- $('launchLevel').onclick=()=>launch(LEVELS[selectedLevel],'campaign',selectedLevel);$('gameExit').onclick=()=>show(mode==='campaign'?'campaign':mode==='test'?'editor':'library');$('gameRestart').onclick=restart;$('moveForm').addEventListener('submit',e=>{e.preventDefault();execute()});for(const id of ['compA','compB'])$(id).addEventListener('input',()=>errorText(''));
+ $('soundToggle').onclick=setSound;$('soundToggle').textContent=soundOn?'♫':'♪̸';$('soundToggle').title=soundOn?'Desactivar sonido':'Activar sonido';$('brandBtn').onclick=$('navHome').onclick=()=>show('home');$('navCampaign').onclick=$('homeStart').onclick=()=>show('campaign');$('navEditor').onclick=$('homeBuild').onclick=$('libraryCreate').onclick=()=>show('editor');$('navLibrary').onclick=()=>show('library');$('helpBtn').onclick=$('gameHow').onclick=openHelp;$('modalClose').onclick=$('modalGotIt').onclick=closeHelp;$('helpModal').addEventListener('click',e=>{if(e.target===$('helpModal'))closeHelp()});document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){closeHelp();return}
+  if(e.key!=='Enter'||e.repeat||e.altKey||e.ctrlKey||e.metaKey||e.isComposing)return;
+  if(!$('helpModal').classList.contains('hidden'))return;
+  if(screen!=='game'||!passed||$('winOverlay').classList.contains('hidden')||performance.now()-winShownAt<280)return;
+  if(document.activeElement?.matches('textarea,input'))return;
+  e.preventDefault();advanceAfterWin();
+ });
+ applyVectorInputMode();coarsePointer.addEventListener?.('change',applyVectorInputMode);window.addEventListener('resize',setAdaptiveViewBox);
+ document.querySelectorAll('.vector-step').forEach(b=>b.addEventListener('click',()=>stepVector(b.dataset.comp,Number(b.dataset.delta))));
+ $('launchLevel').onclick=()=>launch(LEVELS[selectedLevel],'campaign',selectedLevel);$('gameExit').onclick=()=>show(mode==='campaign'?'campaign':mode==='test'?'editor':'library');$('gameRestart').onclick=restart;$('moveForm').addEventListener('submit',e=>{e.preventDefault();execute()});for(const id of ['compA','compB'])$(id).addEventListener('input',()=>{errorText('');syncVectorSteps()});
  $('shareCopy').onclick=shareCreatedCode;$('shareDownload').onclick=()=>{if(testDraft)exportLevel(testDraft)};
- $('winRetry').onclick=()=>launch(active,mode,playIndex,playingSavedId);$('winContinue').onclick=()=>{if(mode==='campaign'){if(playIndex===9){selectedLevel=9;show('campaign')}else launch(LEVELS[playIndex+1],'campaign',playIndex+1)}else show('library')};$('winBack').onclick=()=>show(mode==='campaign'?'campaign':mode==='test'?'editor':'library');
+ $('winRetry').onclick=()=>launch(active,mode,playIndex,playingSavedId);$('winContinue').onclick=advanceAfterWin;$('winBack').onclick=()=>show('home');
  $('editorBack').onclick=()=>show('home');$('editorBoard').addEventListener('pointerdown',editorPointerDown);$('editorBoard').addEventListener('pointermove',editorPointerMove);$('editorBoard').addEventListener('pointerup',editorPointerUp);$('editorBoard').addEventListener('pointercancel',editorPointerUp);
  $('editName').oninput=e=>{editorDraft.name=e.target.value;updateDraft()};$('editAuthor').oninput=e=>{editorDraft.author=e.target.value;updateDraft()};$('barLength').oninput=e=>{if(editorDraft.bars[selectedBar]){const b=editorDraft.bars[selectedBar];b.len=Number(e.target.value);barClamp(b);updateDraft();renderEditor()}};
  $('removeBar').onclick=()=>{if(selectedBar<0)return;editorDraft.bars.splice(selectedBar,1);selectedBar=-1;updateDraft();renderEditor()};$('clearDesign').onclick=()=>{if(!confirm('¿Quitar barreras, turbulencias y núcleo?'))return;editorDraft.bars=[];editorDraft.pads=[];editorDraft.core=null;selectedBar=-1;updateDraft();renderEditor()};$('testDesign').onclick=testDesign;
@@ -719,6 +920,6 @@ function wire(){
  $('importCodeBtn').onclick=()=>{try{addImported(decodeLevel($('importCode').value))}catch(err){libraryMsg(err.message,true)}};
 }
 wire();show('home');
-window.NAVECTOR_TEST={TEACHER_MODE,LEVELS,OPTIMA,bfs,firstHit,testMove,crossingBorder,blackHolePosition,applyTheme,rectOfBar,validateDesign,safeImport,encodeLevel,decodeLevel,launch,show,execute,openHelp,closeHelp};
+window.NAVECTOR_TEST={TEACHER_MODE,LEVELS,OPTIMA,bfs,firstHit,testMove,crossingBorder,blackHolePosition,applyTheme,stepVector,applyVectorInputMode,setAdaptiveViewBox,rectOfBar,validateDesign,safeImport,encodeLevel,decodeLevel,launch,show,execute,openHelp,closeHelp,advanceAfterWin,customBestKey,drawGame};
 
 </script></body></html>
